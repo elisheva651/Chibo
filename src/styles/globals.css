@@ -2,4 +2,123 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
   }
+/* styles/globals.css */
+
+
+.App{
+  background: #EB8317;
+  height: 100vh;
   
+
+}
+/* Styling the square container */
+.welcome-square {
+  
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;  /* Optional rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  margin: 50px auto;  /* Center the square on the page */
+  
+}
+
+/* Styling the welcome text */
+.welcome-text {
+  font-size: 24px;
+  color: black;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+.ways-to-learn{
+  width: 75px;
+  height: 75px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;  /* Optional rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  margin: 50px auto;  /* Center the square on the page */
+  
+
+}
+.categories{
+  width: 75px;
+  height: 75px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;  /* Optional rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  margin: 50px auto;  /* Center the square on the page */
+  
+}
+/* Main container holding the scroll buttons and the categories list */
+.categories-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 80%; /* Adjust as needed */
+  margin: 0 auto;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Horizontal scroll container for categories */
+.categories-list {
+  display: flex;
+  gap: 16px; /* Space between squares */
+  overflow-x: auto; /* Horizontal scroll */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  padding: 10px;
+  width: 100%;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.categories-list::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, etc. */
+}
+
+/* Category box styling */
+.category-box {
+  min-width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Prevent shrinking when scrolling */
+}
+
+/* Scroll buttons on the left and right */
+.scroll-button {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.scroll-button.left {
+  left: 10px;
+}
+
+.scroll-button.right {
+  right: 10px;
+}
