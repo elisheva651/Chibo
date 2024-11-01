@@ -3,24 +3,17 @@ export default function app_statics(req, res) {
     const { method, query } = req;
   
     // Define static arrays
-    const data1 = [
-      { id: 1, name: 'Learn React' },
-      { id: 2, name: 'Learn Next.js' },
-      { id: 3, name: 'Learn JavaScript' },
-    ];
-  
-    const data2 = [
-      { id: 1, name: 'Study Math' },
-      { id: 2, name: 'Study Science' },
-    ];
-  
+    const categories = [{'יסודות':'Bases'}, {'נקודות דיקור':'Acupuncture_points'}, {'צמחים':'plants'}, {'רפואה מערבית':'western_medicine'}]
+    const ways_to_learn =[{'הרצאות':'Lectures'}, {'סיכומים':'Summaries'}, {'משחקים':'Games'}, {'תרגילים':'Exercises'}];
+    
+
     // Example of accessing different data sets
     switch (query.type) {
-      case 'learning':
-        res.status(200).json(data1);
+      case 'ways_to_learn':
+        res.status(200).json(ways_to_learn);
         break;
-      case 'studying':
-        res.status(200).json(data2);
+      case 'categories':
+        res.status(200).json(categories);
         break;
       default:
         res.status(400).json({ message: 'Invalid type' });

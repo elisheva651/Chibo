@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 
 
 
-export default function home() {
+export default function Home() {
 
 
   const [ways_to_learn, set_ways_to_learn] = useState([]);
@@ -44,7 +44,7 @@ export default function home() {
 
 
   return (
-    <div >
+    <div className='App'>
       <div className="welcome-square">
         <h1 className="welcome-text">איזה כיף שבאת לצ'יבו</h1>
       </div>
