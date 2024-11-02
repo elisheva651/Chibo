@@ -14,16 +14,24 @@ body {
 /* Styling the square container */
 .welcome-square {
   
-  width: 150px;
-  height: 150px;
+  width: 299px;
+  height: 198px;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;  /* Optional rounded corners */
+  border-radius: 10px;  /* Optional rounded corners */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
   margin: 50px auto;  /* Center the square on the page */
   
+
+  /* Rectangle 4 */
+
+  /* position: absolute; */
+  left: 46px;
+  top: 74px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
 
 /* Styling the welcome text */
@@ -121,4 +129,32 @@ body {
 
 .scroll-button.right {
   right: 10px;
+}
+
+/* Rectangle 4 */
+
+.top-mem-game-setting{
+  position: absolute;
+  width: 299px;
+  height: 198px;
+  left: 47px;
+  top: 59px;
+
+
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.rec2-setting-mem-game{
+
+  position: absolute;
+  width: 299px;
+  height: 108px;
+  left: 47px;
+  top: 283px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
 }

@@ -1,8 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Games from './ways_to_learn/Games';
-import Summaries from './ways_to_learn/Summaries';
-import Lectures from './ways_to_learn/Lectures';
-import Exercises from './ways_to_learn/Exercises';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 
 
@@ -34,14 +30,8 @@ function Scroll_Options({options}) {
       {arr_options?.map(([hebrew, english], index) => {
         const targetPath = `/ways_to_learn/${english}`;
 
-        
-
         return (
-          <Link
-            key={index}
-            className="category-box"
-            href={targetPath} // Use the correct path
-          >
+          <Link key={index}  className="category-box" href={targetPath}>
             {hebrew}
           </Link>
       )})}
