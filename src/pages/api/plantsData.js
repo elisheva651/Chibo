@@ -7,8 +7,6 @@ export default async function plantsData(req, res) {
     const client = await clientPromise;
     const db = client.db('Plants');
     const plantsCollection = db.collection('plants');
-    const plants = await plantsCollection.find({}, { readPreference: 'primary' }).toArray();
-    console.log('Plants:', plants);
     
     // const query = {};
     
@@ -19,6 +17,7 @@ export default async function plantsData(req, res) {
     // else{
     //   console.log("no difficulty settings")
     // }
+    const plants = await plantsCollection.find({difficulty:difficulty}, { readPreference: 'primary' }).toArray();
 
     // const plants = await plantsCollection.find(query).toArray();
     // console.log("plants", plants)
