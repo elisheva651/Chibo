@@ -1,6 +1,10 @@
 import Scroll_Options from './Scroll_Options';
 import React  from 'react';
 import { ways_to_learn, categories } from 'utils/labels';
+import Manager from './Manager';
+import Link from 'next/link';
+
+
 
 
 export default function Home() {
@@ -18,7 +22,9 @@ export default function Home() {
       <Scroll_Options options={ways_to_learn}/>
       <Scroll_Options options={categories}/>
       <button className='welcome-square'>אפשר להתחיל</button>
-      
+      <Link href={{ pathname: '/Manager' }}>
+          <button>manager only</button>
+      </Link>  
     </div>
   )
 }

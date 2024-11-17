@@ -5,12 +5,96 @@ body {
 /* styles/globals.css */
 
 
-.App{
-  background: #EB8317;
-  height: 100vh;
-  
-
+/* App-level styles */
+.App {
+  background: #EB8317; /* Orange background */
+  min-height: 100vh; 
+  /* display: flex;  */
+  /*justify-content: center;  
+  align-items: center;  
+  padding: 20px;  
+  overflow-y: auto; */
 }
+
+.App-Mem{
+  background: #EB8317; /* Orange background */
+  min-height: 100vh; 
+  display: flex; 
+  justify-content: center;  
+  align-items: center;  
+  padding: 20px;  
+  overflow-y: auto;
+}
+/* Top settings container */
+.top-mem-game-setting {
+  font-family: 'Roboto', sans-serif; /* Custom font (or use a default font like Arial) */
+  font-weight: bold; /* Make it bold */
+  font-size: 24px; /* Adjust font size as needed */
+  background-color: white; /* White background for the settings container */
+  padding: 20px; /* Space inside the container */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 100%;
+  max-width: 500px; /* Limit the width */
+  text-align: right; /* Align text to the right */
+}
+
+/* Title and section headers */
+.top-mem-game-setting h2, .top-mem-game-setting p {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-size: 18px; /* Set text size */
+  font-weight: bold; /* Make text bold */
+  margin-bottom: 12px; /* Space below headings */
+}
+
+/* Spacing between form elements */
+.top-mem-game-setting label, 
+.top-mem-game-setting select, 
+.top-mem-game-setting input[type="checkbox"] {
+  display: block; /* Make each form element appear on a new line */
+  margin-bottom: 12px; /* Space below form elements */
+  font-size: 16px; /* Slightly smaller text for form controls */
+}
+
+/* Button styling */
+.top-mem-game-setting button {
+  background-color: #EB8317; /* Match the App background color */
+  color: white; /* White text */
+  padding: 10px 20px; /* Add padding inside the button */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners for button */
+  font-size: 16px; /* Set button text size */
+  cursor: pointer; /* Pointer cursor on hover */
+  width: 100%; /* Make the button take full width of container */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.top-mem-game-setting button:hover {
+  background-color: #e07a1c; /* Slightly darker orange on hover */
+}
+
+/* Styling for checkboxes */
+.top-mem-game-setting input[type="checkbox"] {
+  margin-right: 10px; /* Space between checkbox and label */
+}
+
+/* Styling for the dropdown options */
+.dropdown-options {
+  margin-bottom: 12px; /* Add space below the checkbox group */
+}
+
+.dropdown-option {
+  right:0;
+  margin-bottom: 8px; /* Space between checkboxes */
+}
+
+.dropdown-option label {
+  padding-right: 30px;
+
+  word-wrap: break-word;
+}
+
 /* Styling the square container */
 .welcome-square {
   
@@ -133,26 +217,12 @@ body {
 
 /* Rectangle 4 */
 
-.top-mem-game-setting{
-  position: absolute;
-  width: 299px;
-  height: 198px;
-  left: 47px;
-  top: 59px;
 
-
-  background: #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-}
 
 .rec2-setting-mem-game{
 
   position: absolute;
-  width: 299px;
-  height: 108px;
-  left: 47px;
-  top: 283px;
+  
 
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -163,10 +233,7 @@ body {
   /* Rectangle 31 */
 
   position: absolute;
-  width: 299px;
-  height: 108px;
-  left: 47px;
-  top: 426px;
+ 
 
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
