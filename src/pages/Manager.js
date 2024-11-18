@@ -20,7 +20,7 @@ function Manager() {
 
     const formData = new FormData();
     formData.append("file", file);
-
+    console.log("file", file)
     const res = await fetch("/api/upload-csv", {
       method: "POST",
       body: formData,

@@ -6,22 +6,22 @@ import Time from 'pages/Time';
 
 const MemoryGame = () => {
   const router = useRouter();
-  const { difficulty, plantsCategories, sound } = router.query;  // Get query params
+  const { difficulty, plantsCategories, sound, language } = router.query;  // Get query params
   const [numCards, setNumCards] = useState(0);
   const [isWinner, setIsWinner] = useState(false)
   const [plants, setPlants] = useState([]);
   const [shuffledPlants, setShuffledPlants] = useState([]); // Store shuffled plants
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const plant_name_field = language === "לטינית" ? "שם הצמח בלטינית" : "שם הצמח בסינית";
   const [flippedCards, setFlippedCards] = useState([]); // Track flipped cards
   const [matchedCards, setMatchedCards] = useState([]); // Track matched cards
   
   // Fetch plants based on selected difficulty
-  const fetchPlants = async (difficulty) => {
+  const fetchPlants = async (plantsCategory) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/plantsData?difficulty=${difficulty}`);
+      const response = await fetch(`/api/plantsData?plantsCategories=${plantsCategory}`);
       const data = await response.json();
       if (response.ok && Array.isArray(data)) {
         setPlants(data); // Set the fetched plants
@@ -37,11 +37,11 @@ const MemoryGame = () => {
 
   useEffect(() => {
     const difficultyMap = {
-      easy: 16,
-      medium: 24,
-      hard: 36,
+      easy: 10,
+      medium: 20,
+      hard: 30,
     };
-    const maxCards = difficultyMap[difficulty] || 16;
+    const maxCards = difficultyMap[difficulty] || 10;
 
     // Set numCards to be the minimum between maxCards and plants.length
     if (plants && plants.length > 0){
@@ -53,8 +53,8 @@ const MemoryGame = () => {
 
   // Fetch plants when difficulty changes
   useEffect(() => {
-    fetchPlants(difficulty);
-  }, [difficulty]);  // Re-fetch when difficulty changes
+    fetchPlants(plantsCategories);
+  }, []);  // Re-fetch when difficulty changes
 
   // Shuffle and duplicate the plants for the game
   useEffect(() => {
@@ -90,14 +90,14 @@ const MemoryGame = () => {
     if (flippedCards.length === 2) {
       const [firstIndex, secondIndex] = flippedCards;
 
-      if (shuffledPlants[firstIndex].name === shuffledPlants[secondIndex].name) {
+      if (shuffledPlants[firstIndex][plant_name_field] === shuffledPlants[secondIndex][plant_name_field]) {
         // If cards match, add them to matchedCards
         setMatchedCards((prevMatched) => [...prevMatched, firstIndex, secondIndex]);
       }
       console.log("in jandle click", numCards, matchedCards)
       
       // Wait a moment before resetting flipped cards (to allow user to see the cards)
-      setTimeout(() => setFlippedCards([]), 1000);  // Reset flipped cards after delay
+      setTimeout(() => setFlippedCards([]), 1500);  // Reset flipped cards after delay
     }
   }, [flippedCards, shuffledPlants]);
 
@@ -108,8 +108,8 @@ const MemoryGame = () => {
   if (error) return <div>{error}</div>;
 
   return (
+
     <div className="App">
-      
       {matchedCards.length === numCards ? (
         <div>
           <h1>Congratulations, You Won!</h1>
@@ -124,7 +124,8 @@ const MemoryGame = () => {
             onClick={() => handleCardClick(index)}
           >
             {/* Show the plant name if the card is flipped or matched */}
-            <p>{flippedCards.includes(index) || matchedCards.includes(index) ? plant.name : ':)'}</p>
+          
+            <p>{flippedCards.includes(index) || matchedCards.includes(index) ? plant[plant_name_field] : ':)'}</p>
           </div>
         ))}
       </div>)

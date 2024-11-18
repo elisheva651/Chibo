@@ -1,9 +1,10 @@
 import clientPromise from '../../lib/mongodb';
 
 export default async function plantsData(req, res) {
-  const {difficulty } = req.query;  // Get difficulty from the query string
+  const {plantsCategories } = req.query;  // Get difficulty from the query string
 
   try {
+    console.log("plantsCategories", plantsCategories)
     const client = await clientPromise;
     const db = client.db('Plants');
     const plantsCollection = db.collection('plants');
@@ -17,7 +18,7 @@ export default async function plantsData(req, res) {
     // else{
     //   console.log("no difficulty settings")
     // }
-    const plants = await plantsCollection.find({difficulty:difficulty}, { readPreference: 'primary' }).toArray();
+    const plants = await plantsCollection.find({"קטגוריה":plantsCategories}, { readPreference: 'primary' }).toArray();
 
     // const plants = await plantsCollection.find(query).toArray();
     // console.log("plants", plants)

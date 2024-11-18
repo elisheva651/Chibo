@@ -10,7 +10,7 @@ export const config = {
 };
 
 async function uploadCSV(req, res) {
-    const formidable = require("formidable");
+  const formidable = require("formidable");
 
   const form = new formidable.IncomingForm();
   
@@ -36,6 +36,7 @@ async function uploadCSV(req, res) {
           const db = client.db('Plants');
           // Insert the parsed data into your MongoDB collection
           const collection = db.collection("plants");
+          await collection.deleteMany({});
           await collection.insertMany(results);
 
           return res.status(200).json({ message: "Data uploaded successfully!" });
