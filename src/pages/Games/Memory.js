@@ -11,7 +11,6 @@ export default function Memory() {
   const [difficulty, setDifficulty] = useState('');
   const [sound, setSound] = useState(true);  // true means sound on by default
   const [selectedLanguage, setSelectedLanguage] = useState("latin"); // Default to latin
-  const [language, setLanguage] = useState('לטינית');
   // 2. Handler functions to update state
   const handleCategoryChange = (e) => {
     const category = e.target.value;
@@ -26,6 +25,7 @@ export default function Memory() {
   };
   
   const handleDifficultyChange = (e) => {
+    console.log("ssss", e.target.value)
     setDifficulty(e.target.value);
   }
   const handleSoundChange = (e) => setSound(e.target.checked);
@@ -81,7 +81,7 @@ export default function Memory() {
           <input type="checkbox" checked={sound} onChange={handleSoundChange}/>
         </label><br /> 
       
-        <Link href={{ pathname: '/Games/MemGameStart', query: { plantsCategories: selectedCategories, difficulty: difficulty, sound:sound , language:language} }}>
+        <Link href={{ pathname: '/Games/MemGameStart', query: { plantsCategories: selectedCategories, difficulty: difficulty, sound:sound , language:selectedLanguage} }}>
           <button>אפשר להתחיל</button>
         </Link> 
       </div>

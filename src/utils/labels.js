@@ -5,8 +5,8 @@ export const names_of_games = [{'זכרון':'Memory'}, {'רקיחת שיקוי�
 export const plantCategoryOptions = [{ value: '', label: 'בחר קטגוריה' },{ value: 'flowers', label: 'פרחים' },
     { value: 'cacti', label: 'קקטוסים' },{ value: 'succulents', label: 'סוקולנטים' }];
 
-export const difficultyOptions = [{ value: '', label: 'בחר רמת קושי' },{ value: 'easy', label: ' קל- עד 10 קלפים' },
-    { value: 'medium', label: 'בינוני- עד 20 קלפים' }, { value: 'hard', label: 'קשה- עד 30 קלפים' }];
+export const difficultyOptions = [{ value: '', label: 'בחר רמת קושי' },{ value: 'easy', label: ' קל- עד 5 צמחים' },
+    { value: 'medium', label: 'בינוני- עד 10 צמחים' }, { value: 'hard', label: 'קשה- עד 15 צמחים' }];
 
 
 export const plantsCategories = ["מנקי חום מרמת הצ'י (מנקזי אש)","הורגי פרזיטים", "מווסתי צ'י", "מזיני יין", "מחזקי דם",
