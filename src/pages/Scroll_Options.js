@@ -18,7 +18,7 @@ function Scroll_Options({options}) {
     }};
 
 
-  const arr_options = options.map(obj => Object.entries(obj)[0]);
+  const arr_options = options?.map(obj => Object.entries(obj)[0]);
 
 
   return (
