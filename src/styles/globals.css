@@ -96,35 +96,105 @@ body {
 }
 
 /* Styling the square container */
-.welcome-square {
-  
-  width: 299px;
-  height: 198px;
-  background-color: white;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Arial', sans-serif;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;  /* Optional rounded corners */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
-  margin: 50px auto;  /* Center the square on the page */
-  
-
-  /* Rectangle 4 */
-
-  /* position: absolute; */
-  left: 46px;
-  top: 74px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
+  background: #EB8317; /* Orange background */
 }
 
-/* Styling the welcome text */
-.welcome-text {
-  font-size: 24px;
-  color: black;
-  font-family: 'Arial', sans-serif;
+.App {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
   text-align: center;
-  margin: 0;
+}
+
+/* Welcome Container */
+.welcome-container {
+  width: 100%;
+  max-width: 360px; /* Make sure it's not too wide */
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+}
+
+.welcome-text {
+  font-size: 28px; /* Slightly larger for better readability */
+  color: #333;
+  font-weight: bold;
+}
+
+/* Scrollable Wrapper for Options */
+.scroll-wrapper {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px;
+  overflow-y: auto;
+  margin-bottom: 40px; /* Space for button */
+  max-height: 300px; /* Limit height for scrollable area */
+}
+
+/* Start Button */
+.start-button {
+  padding: 15px 30px;
+  background-color: #4CAF50; /* A calming green color */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #45a049; /* Slightly darker green for hover */
+}
+
+.start-button:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding: 20px;
+  }
+  
+  .welcome-container {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .welcome-text {
+    font-size: 24px; /* Adjust text size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-text {
+    font-size: 20px;
+  }
+
+  .start-button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
 }
 
 .ways-to-learn{
