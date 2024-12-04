@@ -7,7 +7,6 @@ import Time from 'pages/Time';
 const MemoryGame = () => {
   const router = useRouter();
   const { difficulty, plantsCategories, sound, language } = router.query;  // Get query params
-  console.log("difficulty", difficulty)
   const [numCards, setNumCards] = useState(0);
   const [isWinner, setIsWinner] = useState(false)
   const [plants, setPlants] = useState([]);
@@ -15,7 +14,6 @@ const MemoryGame = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const plant_name_field = language === "latin" ? "שם הצמח בלטינית" : "שם הצמח בסינית";
-  console.log("plant_name_field", plant_name_field, language)
   const [flippedCards, setFlippedCards] = useState([]); // Track flipped cards
   const [matchedCards, setMatchedCards] = useState([]); // Track matched cards
   
@@ -136,7 +134,6 @@ const MemoryGame = () => {
         // console.log("mutch!", shuffledPlants[firstIndex].type, shuffledPlants[secondIndex].type)
         setMatchedCards((prevMatched) => [...prevMatched, firstIndex, secondIndex]);
       }
-      console.log("in jandle click", numCards, matchedCards)
       
       // Wait a moment before resetting flipped cards (to allow user to see the cards)
       setTimeout(() => setFlippedCards([]), 1500);  // Reset flipped cards after delay
