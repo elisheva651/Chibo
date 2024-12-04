@@ -2,10 +2,7 @@ export const categories = [{'יסודות':'Bases'}, {'נקודות דיקור':
 export const ways_to_learn =[{'הרצאות':'Lectures'}, {'סיכומים':'Summaries'}, {'משחקים':'Games'}, {'תרגילים':'Exercises'}];
 export const names_of_games = [{'זכרון':'Memory'}, {'רקיחת שיקויים':'BrewingPotions'}, {'נטרול פצצה':'defuseBomb'}, {'כרטיסיות':'Tabs'}];
 
-export const plantCategoryOptions = [{ value: '', label: 'בחר קטגוריה' },{ value: 'flowers', label: 'פרחים' },
-    { value: 'cacti', label: 'קקטוסים' },{ value: 'succulents', label: 'סוקולנטים' }];
-
-export const difficultyOptions = [{ value: '', label: 'בחר רמת קושי' },{ value: 'easy', label: ' קל- עד 5 צמחים' },
+export const difficultyOptions = [{ value: 'easy', label: ' קל- עד 5 צמחים' },
     { value: 'medium', label: 'בינוני- עד 10 צמחים' }, { value: 'hard', label: 'קשה- עד 15 צמחים' }];
 
 
