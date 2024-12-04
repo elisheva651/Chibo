@@ -95,7 +95,7 @@ const MemoryGame = () => {
 
   useEffect(() => {
     console.log(numCards, matchedCards.length)
-    if (matchedCards.length === numCards) {
+    if (matchedCards.length >= numCards) {
       setIsWinner(true);
     }
   }, [matchedCards, numCards]);
