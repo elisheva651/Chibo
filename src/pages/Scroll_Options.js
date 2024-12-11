@@ -23,10 +23,7 @@ function Scroll_Options({options}) {
 
   return (
     <div className="categories-container">
-        <button className="scroll-button left" onClick={() => scroll('left')}>
-        ◀
-      </button>
-      <div className="categories-list" ref={scrollRef}>
+      <div className='categories-list' ref={scrollRef}>
       {arr_options?.map(([hebrew, english], index) => {
         const targetPath = `/ways_to_learn/${english}`;
 
@@ -36,11 +33,6 @@ function Scroll_Options({options}) {
           </Link>
       )})}
       </div>
-
-      <button className="scroll-button right" onClick={() => scroll('right')}>
-        ▶
-      </button>
-      
     </div>
   );
 };

@@ -5,97 +5,7 @@ body {
 /* styles/globals.css */
 
 
-/* App-level styles */
-.App {
-  background: #EB8317; /* Orange background */
-  min-height: 100vh; 
-  /* display: flex;  */
-  /*justify-content: center;  
-  align-items: center;  
-  padding: 20px;  
-  overflow-y: auto; */
-}
-
-.App-Mem{
-  background: #EB8317; /* Orange background */
-  min-height: 100vh; 
-  display: flex; 
-  justify-content: center;  
-  align-items: center;  
-  padding: 20px;  
-  overflow-y: auto;
-}
-/* Top settings container */
-.top-mem-game-setting {
-  font-family: 'Roboto', sans-serif; /* Custom font (or use a default font like Arial) */
-  font-weight: bold; /* Make it bold */
-  font-size: 24px; /* Adjust font size as needed */
-  background-color: white; /* White background for the settings container */
-  padding: 20px; /* Space inside the container */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  width: 100%;
-  max-width: 500px; /* Limit the width */
-  text-align: right; /* Align text to the right */
-}
-
-/* Title and section headers */
-.top-mem-game-setting h2, .top-mem-game-setting p {
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  font-size: 18px; /* Set text size */
-  font-weight: bold; /* Make text bold */
-  margin-bottom: 12px; /* Space below headings */
-}
-
-/* Spacing between form elements */
-.top-mem-game-setting label, 
-.top-mem-game-setting select, 
-.top-mem-game-setting input[type="checkbox"] {
-  display: block; /* Make each form element appear on a new line */
-  margin-bottom: 12px; /* Space below form elements */
-  font-size: 16px; /* Slightly smaller text for form controls */
-}
-
-/* Button styling */
-.top-mem-game-setting button {
-  background-color: #EB8317; /* Match the App background color */
-  color: white; /* White text */
-  padding: 10px 20px; /* Add padding inside the button */
-  border: none; /* Remove default border */
-  border-radius: 4px; /* Rounded corners for button */
-  font-size: 16px; /* Set button text size */
-  cursor: pointer; /* Pointer cursor on hover */
-  width: 100%; /* Make the button take full width of container */
-  box-sizing: border-box; /* Include padding in width */
-}
-
-.top-mem-game-setting button:hover {
-  background-color: #e07a1c; /* Slightly darker orange on hover */
-}
-
-/* Styling for checkboxes */
-.top-mem-game-setting input[type="checkbox"] {
-  margin-right: 10px; /* Space between checkbox and label */
-}
-
-/* Styling for the dropdown options */
-.dropdown-options {
-  margin-bottom: 12px; /* Add space below the checkbox group */
-}
-
-.dropdown-option {
-  right:0;
-  margin-bottom: 8px; /* Space between checkboxes */
-}
-
-.dropdown-option label {
-  padding-right: 30px;
-
-  word-wrap: break-word;
-}
-
-/* Styling the square container */
+/* General reset for margin and padding */
 * {
   margin: 0;
   padding: 0;
@@ -142,11 +52,11 @@ body, html {
 /* Scrollable Wrapper for Options */
 .scroll-wrapper {
   width: 100%;
+  height: 100%;
   max-width: 360px;
   padding: 10px;
   overflow-y: auto;
   margin-bottom: 40px; /* Space for button */
-  max-height: 300px; /* Limit height for scrollable area */
 }
 
 /* Start Button */
@@ -197,6 +107,50 @@ body, html {
   }
 }
 
+
+.App-Mem{
+  background: #EB8317; /* Orange background */
+  min-height: 100vh; 
+  display: flex; 
+  justify-content: center;  
+  align-items: center;  
+  padding: 20px;  
+  overflow-y: auto;
+}
+
+
+/* Styling the square container */
+.welcome-square {
+  
+  width: 299px;
+  height: 198px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;  /* Optional rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  margin: 50px auto;  /* Center the square on the page */
+  
+
+  /* Rectangle 4 */
+
+  /* position: absolute; */
+  left: 46px;
+  top: 74px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+/* Styling the welcome text */
+.welcome-text {
+  font-size: 24px;
+  color: black;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
 .ways-to-learn{
   width: 75px;
   height: 75px;
@@ -228,8 +182,15 @@ body, html {
   align-items: center;
   position: relative;
   width: 80%; /* Adjust as needed */
-  margin: 0 auto;
+  height: 100%;
+  overflow-x: auto; /* Horizontal scroll */
+  gap: 16px; /* Space between squares */
+  padding: 10px;
+
   overflow: hidden; /* Prevent content overflow */
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+
 }
 
 /* Horizontal scroll container for categories */
@@ -237,7 +198,7 @@ body, html {
   display: flex;
   gap: 16px; /* Space between squares */
   overflow-x: auto; /* Horizontal scroll */
-  scroll-behavior: smooth; /* Smooth scrolling */
+   /* Smooth scrolling */
   padding: 10px;
   width: 100%;
   scrollbar-width: none; /* Hide scrollbar for Firefox */
@@ -249,44 +210,180 @@ body, html {
 
 /* Category box styling */
 .category-box {
-  min-width: 150px;
-  height: 150px;
+  flex-shrink: 0;        /* Prevent items from shrinking */
+  width: 200px;          /* Set width for each box */
+  height: 150px;         /* Set height for each box (adjust as needed) */
+  background-color: #fff;  /* Set background color */
+  color: #333;           /* Text color */
+  border-radius: 10px;   /* Rounded corners */
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0; /* Prevent shrinking when scrolling */
+  align-items: center;
+  text-decoration: none; /* Remove underline from Link */
+  font-size: 18px;       /* Text size for the category */
+  font-weight: bold;     /* Make text bold */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional box-shadow for depth */
+  transition: background-color 0.3s ease; /* Smooth background color change on hover */
 }
 
-/* Scroll buttons on the left and right */
-.scroll-button {
-  background-color: black;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  font-size: 24px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  border-radius: 50%;
+@media (max-width: 768px) {
+  .category-box {
+    width: 150px;          /* Set width for each box */
+    height: 110px; 
+    font-size: 16px;  
+  }
 }
 
-.scroll-button.left {
-  left: 10px;
+@media (max-width: 480px) {
+  .category-box {
+    width: 80px;          /* Set width for each box */
+    height: 50px;
+    font-size: 15px;   
+  }
 }
 
-.scroll-button.right {
-  right: 10px;
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 80%;
+  padding: 20px;
+  max-height: 80vh; /* Limit height to 80% of the viewport */
+  overflow-y: auto; /* Allow scrolling when content overflows */
+  margin: 20px 0; /* Margin to add space above and below */
+  box-sizing: border-box;
+
+
 }
 
-/* Rectangle 4 */
+@media (max-width: 768px) {
+  .card {
+    padding: 10px;
+    max-height: 60vh; /* Adjust max height on smaller screens */
+    gap: 15px; /* Optional: Reduce the gap for smaller screens */
+  }
+}
 
+@media (max-width: 480px) {
+  .card {
+    padding: 5px;
+    max-width: 45vh;
+    max-height: 50vh; /* Adjust max height even further */
+    gap: 10px; /* Optional: Reduce the gap more */
+  }
+}
+
+
+.category-box.memory-card {
+  width: 100%;
+  padding: 50px;
+}
+
+
+@media (max-width: 768px) {
+  .category-box.memory-card {
+    width: 100%;
+    padding: 20px;
+    max-height: 80vh; 
+  }
+}
+
+@media (max-width: 480px) {
+  .category-box.memory-card {
+    width: 100%;
+    padding: 35px;
+    max-height: 40vh; 
+
+  }
+}
+
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));  /* 4 columns in grid */
+  grid-gap: 16px;  /* space between grid items */
+  width: 90vw;
+  max-width: 80vw;  /* Max width of the board */
+  margin: 40px auto;
+  padding: 16px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
+  .memory-board {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust card size on smaller screens */
+    gap: 15px; /* Optional: Reduce the gap */
+    padding: 10px;
+
+  }
+}
+
+@media (max-width: 480px) {
+  .memory-board {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); /* Further reduce card size */
+    gap: 10px; /* Reduce the gap more */
+    padding: 50px;
+    max-height: 100vh; 
+  }
+}
+
+
+
+.mem-game-card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 80%;
+  padding: 20px;
+  max-height: 80vh; /* Limit height to 80% of the viewport */
+  overflow-y: auto; /* Allow scrolling when content overflows */
+  margin: 20px 0; /* Margin to add space above and below */
+  box-sizing: border-box;
+
+
+}
+
+@media (max-width: 768px) {
+  .mem-game-card {
+    padding: 10px;
+    max-height: 60vh; /* Adjust max height on smaller screens */
+    gap: 15px; /* Optional: Reduce the gap for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .mem-game-card {
+    padding: 5px;
+    max-width: 45vh;
+    max-height: 50vh; /* Adjust max height even further */
+    gap: 10px; /* Optional: Reduce the gap more */
+  }
+}
+
+
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.card-media{
+  object-fit: contain; /* Ensures the image maintains its aspect ratio without covering content*/
+  height: auto;       /* Automatically adjust the height to maintain aspect ratio*/
+  max-height: 25vh;    /* Limit the height to 50% of the viewport height (adjust as necessary)*/
+  max-width: 25vh;        /* Make sure the image fills its container's width*/
+  /* Responsive height adjustment (optional based on breakpoints)*/
+  
+}
 
 
 .rec2-setting-mem-game{

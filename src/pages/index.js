@@ -12,12 +12,13 @@ export default function Home() {
 
   return (
     <div className='App'>
-      <div className="welcome-square">
+      <div className="card">
         <h1 className="welcome-text">איזה כיף שבאת לצ'יבו</h1>
-      </div>
+      
       <Scroll_Options options={ways_to_learn}/>
       <Scroll_Options options={categories}/>
       <button className='welcome-square'>אפשר להתחיל</button>
+      </div>
 
 
     

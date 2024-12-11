@@ -113,19 +113,17 @@ const MemoryGame = () => {
 
         </div>
 
-      ):(<div className="game-board">
+      ):(<div className="memory-board">
         {shuffledPlants.map((plant, index) => (
-          <div
+          <div 
             key={index}
-            className={`card ${flippedCards.includes(index) || matchedCards.includes(index) ? 'flipped' : ''}`}
+            className={`category-box memory-card ${flippedCards.includes(index) || matchedCards.includes(index) ? 'flipped' : ''}`}
             onClick={() => handleCardClick(index)}
           >
               {flippedCards.includes(index) || matchedCards.includes(index) 
                 ? plant.content // Show content (either plant name or tifkud)
                 : ':)'} {/* Placeholder when the card is not flipped */}
            
-              {/* {plant.type === 'name' ? plant.content : ''} */}
-
           </div>
         ))}
       </div>)

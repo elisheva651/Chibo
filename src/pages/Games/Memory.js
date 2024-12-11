@@ -5,6 +5,7 @@ import { plantsCategories, difficultyOptions } from 'utils/labels';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { plantsJsons } from 'utils/plantsJsons';
 import { useRouter } from 'next/router';
+import Chip from '@mui/material/Chip';
 
 
 export default function Memory() {
@@ -20,16 +21,6 @@ export default function Memory() {
     hard: 15,
   };
   
-  const handleCategoryChange = (e) => {
-    const category = e.target.value;
-    if (selectedCategories.includes(category)) {
-      // Remove category from selected if it's already selected
-      setSelectedCategories(selectedCategories.filter(item => item !== category));
-    } else {
-      // Add category to selected
-      setSelectedCategories([...selectedCategories, category]);
-    }
-  };
   
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
@@ -86,25 +77,30 @@ export default function Memory() {
     });
   };
 
+  const toggleCategory = (category) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(selectedCategories.filter(c => c !== category));
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
+
 
   return (
-    <div className='App-Mem'>
-      <div className='top-mem-game-setting'>
-        קטגוריות צמחים/ערוצים
+    <div className='App'>
+    <div className="mem-game-card">
+   
+    <h2>קטגוריות צמחים/ערוצים</h2>
+    {plantsCategories.map((category, index) => (
+    <Chip
+      key={index}
+      label={category}
+      onClick={() => toggleCategory(category)}
+      color={selectedCategories.includes(category) ? "primary" : "default"}
+    />
+  ))}
 
-        {plantsCategories.map((category, index) => (
-        <FormControlLabel
-          key={index}
-          control={
-            <Checkbox
-              value={category}
-              checked={selectedCategories.includes(category)}
-              onChange={handleCategoryChange}
-            />
-          }
-          label={category}
-        />
-      ))}
+      
 
       
 
@@ -135,7 +131,7 @@ export default function Memory() {
         </label><br /> 
 
         <button onClick={handleStartClick}>אפשר להתחיל</button>
-      </div>
+    </div>
     </div>
   )
 }

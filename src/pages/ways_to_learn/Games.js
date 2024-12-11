@@ -8,9 +8,9 @@ const Games = () => {
 
   return (
   <div className="App">
-    <div className="categories-container">
+    <div className="card">
         
-      <div className="categories-list" style={{display: 'flex', flexWrap: 'wrap'}} >
+      <div className="categories-container" style={{display: 'flex', flexWrap: 'wrap'}} >
       {games?.map(([hebrew, english], index) => {
         const targetPath = `/Games/${english}`;
 
