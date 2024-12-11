@@ -121,7 +121,7 @@ const MemoryGame = () => {
             onClick={() => handleCardClick(index)}
           >
               {flippedCards.includes(index) || matchedCards.includes(index) 
-                ? plant.content // Show content (either plant name or tifkud)
+                ? <h2 className="card-text">{plant.content}</h2> // Show content (either plant name or tifkud)
                 : ':)'} {/* Placeholder when the card is not flipped */}
            
           </div>
