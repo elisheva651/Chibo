@@ -14,7 +14,7 @@ export default function Memory() {
   const [selectedCategories, setSelectedCategories] = useState('');
   const [difficulty, setDifficulty] = useState('easy');
   const [sound, setSound] = useState(true);  // true means sound on by default
-  const [selectedLanguage, setSelectedLanguage] = useState("latin"); // Default to latin
+  const [selectedLanguage, setSelectedLanguage] = useState("pinyin"); // Default to latin
   const difficultyMap = {
     easy: 5,
     medium: 10,
@@ -116,6 +116,10 @@ export default function Memory() {
         
 
       בחר שפה
+      <label>
+        <input type="radio" value="pinyin" checked={selectedLanguage === "pinyin"} onChange={handleLanguageChange}/>
+        פין יין
+      </label>
       <label>
         <input type="radio" value="latin" checked={selectedLanguage === "latin"} onChange={handleLanguageChange}/>
         לטינית

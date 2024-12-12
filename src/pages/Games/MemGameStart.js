@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Time from 'pages/Time';
 import { plantsCategories } from 'utils/labels';
+import Link from 'next/link';
 
 
 const MemoryGame = () => {
@@ -12,8 +13,10 @@ const MemoryGame = () => {
   const [shuffledPlants, setShuffledPlants] = useState([]); // Store shuffled plants
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const plant_name_field = language === "latin" ? "שם הצמח בלטינית" : "שם הצמח בסינית";
-  const [flippedCards, setFlippedCards] = useState([]); // Track flipped cards
+  const plant_name_field = 
+  language === "latin" ? "שם הצמח בלטינית" : 
+  language === "pinyin" ? "שם הצמח בפין יין" : 
+  "שם הצמח בסינית";  const [flippedCards, setFlippedCards] = useState([]); // Track flipped cards
   const [matchedCards, setMatchedCards] = useState([]); // Track matched cards
   const toPracticeOn = "תפקודים והערות";
 
@@ -47,21 +50,23 @@ const MemoryGame = () => {
         const characters = plant[toPracticeOn].split(",") ;
         const randomUse = characters[Math.floor(Math.random() * characters.length)];
         // Create two cards: one with the plant name, and one with the "תיפקוד"
+
         return [
-          { plantObj: plant, type: 'name', content: plant[plant_name_field] }, // Card with the name
-          { plantObj: plant, type: 'use', content: randomUse } // Card with the תיפקוד
+          { plantObj: plant, type: 'name', content: plant[plant_name_field], contentId: randomUse}, // Card with the name
+          { plantObj: plant, type: 'use', content: randomUse, contentId:randomUse} // Card with the תיפקוד
         ];
       } else {
         //return just the card name twice
         return [
-          {plantObj: plant,  type: 'name', content: plant[plant_name_field] }, // Card with the name
-          { plantObj: plant, type: 'use', content: plant[plant_name_field] } // Card with the תיפקוד
+          {plantObj: plant,  type: 'name', content: plant[plant_name_field] , contentId: plant[plant_name_field]}, // Card with the name
+          { plantObj: plant, type: 'use', content: plant[plant_name_field] , contentId: plant[plant_name_field]} // Card with the תיפקוד
         ];
       }
     });
   
     // Flatten the array of pairs into a single array of cards
     const flattenedPairs = plantPairs.flat();
+    console.log("flattenedPairs", flattenedPairs)
   
     // Shuffle the cards randomly
     const shuffled = flattenedPairs.sort(() => Math.random() - 0.5);
@@ -80,8 +85,11 @@ const MemoryGame = () => {
   useEffect(() => {
     if (flippedCards.length === 2) {
       const [firstIndex, secondIndex] = flippedCards;
-
-      if (shuffledPlants[firstIndex].plantObj === shuffledPlants[secondIndex].plantObj) {
+      const c1 = shuffledPlants[firstIndex]
+      const c2 = shuffledPlants[secondIndex]
+      if ((c1.type === "name" && c2.type === "use" && c1.contentId === c2.contentId) || 
+      (c1.type === "use" && c2.type === "name" && c1.contentId === c2.contentId))
+      {
         // If cards match, add them to matchedCards
         // console.log("mutch!", shuffledPlants[firstIndex].type, shuffledPlants[secondIndex].type)
         setMatchedCards((prevMatched) => [...prevMatched, firstIndex, secondIndex]);
@@ -108,9 +116,17 @@ const MemoryGame = () => {
 
     <div className="App">
       {isWinner ? (
-        <div>
+        <div >
+          <div className='card categories-list'>
           <h1>Congratulations, You Won!</h1>
 
+          <Link  className="category-box" href={`/Games/Memory/`}>
+            Play again
+          </Link>
+          <Link   className="category-box" href={"/"}>
+            Home
+          </Link>
+          </div>
         </div>
 
       ):(<div className="memory-board">

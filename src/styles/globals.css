@@ -190,6 +190,7 @@ body, html {
   overflow: hidden; /* Prevent content overflow */
   scroll-behavior: smooth;
   scrollbar-width: none; /* Hide scrollbar for Firefox */
+  justify-content: space-between;
 
 }
 
@@ -202,6 +203,7 @@ body, html {
   padding: 10px;
   width: 100%;
   scrollbar-width: none; /* Hide scrollbar for Firefox */
+  justify-content: space-between;
 }
 
 .categories-list::-webkit-scrollbar {
