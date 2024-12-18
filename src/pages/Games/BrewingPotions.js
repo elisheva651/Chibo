@@ -1,12 +1,13 @@
-import React, { use } from 'react';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Time from 'pages/Time';
 import { plantsCategories } from 'utils/labels';
 import Link from 'next/link';
+import React from 'react';
+import { useRouter } from 'next/router';
 
 
-const MemoryGame = () => {
+export default function BrewingPotions() {
+
   const router = useRouter();
   const { numCards, plantsForGame, sound, language } = router.query;  // Get query params
   const [isWinner, setIsWinner] = useState(false)
@@ -120,7 +121,7 @@ const MemoryGame = () => {
           <div className='card categories-list'>
           <h1>Congratulations, You Won!</h1>
 
-          <Link  className="category-box" href={`/Games/Memory/`}>
+          <Link  className="category-box" href={`/Games/GameSettings/`}>
             Play again
           </Link>
           <Link   className="category-box" href={"/"}>
@@ -148,4 +149,3 @@ const MemoryGame = () => {
   );
 };
 
-export default MemoryGame;

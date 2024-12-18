@@ -18,7 +18,7 @@ export default function Home() {
         {ways_to_learn?.map((item, index) => {
         const [hebrew, english] = Object.entries(item)[0];  // Get the first (and only) key-value pair in each object
         const targetPath = `/ways_to_learn/${english}`;
-        console.log("S", hebrew, english, targetPath);
+        // console.log("hebrew, english, targetPath", hebrew, english, targetPath);
         return (
           <Link key={index}  className="category-box" href={targetPath}>
             {hebrew}
