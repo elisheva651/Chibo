@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Time from 'pages/Time';
 import Link from 'next/link';
+import styles from '../../styles/memory.module.css';
 
 
 const Memory = () => {
@@ -25,7 +26,7 @@ const Memory = () => {
   useEffect(() => {
  
     if (plantsForGame.length > 0) {
-      const shuffled = shufflePlants(plantsForGame, numCards);
+      const shuffled = shufflePlants(plantsForGame);
       setShuffledPlants(shuffled);
     }
     setLoading(false)
@@ -117,18 +118,7 @@ const Memory = () => {
     <div className="App">
       <Time/>
       {isWinner ? (
-        <div >
-          <div className='card categories-list'>
           <h1>Congratulations, You Won!</h1>
-
-          <Link  className="category-box" href={`/Games/GameSettings/`}>
-            Play again
-          </Link>
-          <Link   className="category-box" href={"/"}>
-            Home
-          </Link>
-          </div>
-        </div>
 
       ):(<div className="memory-board">
         {shuffledPlants.map((plant, index) => (
@@ -145,6 +135,14 @@ const Memory = () => {
         ))}
       </div>)
       }
+      <div className={styles.links}>
+        <Link  className={styles.categoryBox} href={{pathname:`/Games/GameSettings/`, query:{ name_game: "Memory" }}}>
+            Play again
+          </Link>
+          <Link   className={styles.categoryBox} href={"/"}>
+            Home
+          </Link>
+      </div>
     </div>
   );
 };

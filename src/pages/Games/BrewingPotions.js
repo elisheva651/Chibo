@@ -1,79 +1,106 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import Time from 'pages/Time';
-import { plantsCategories } from 'utils/labels';
+import { potions } from 'utils/potions';
+import { plantsJsons } from 'utils/plantsJsons';
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router';
+import styles from '../../styles/potions.module.css';
 
 
+// randomly chose a potion from the categories that user chose.
+// randomly chose from the components of the potion and from list of not components of the potion.
 export default function BrewingPotions() {
 
   const router = useRouter();
-  const { numCards, plantsForGame, sound, language } = router.query;  // Get query params
+  const { selectedCategories, sound, language } = router.query;  // Get query params
   const [isWinner, setIsWinner] = useState(false)
-  const [shuffledPlants, setShuffledPlants] = useState([]); // Store shuffled plants
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const categoriesArray = Array.isArray(selectedCategories) ? selectedCategories : selectedCategories ? [selectedCategories] : [];
+  const numBadIngredients = 2;
+  const [badIngredients, setBadIngredients ]= useState([])
+  const [randomPotion, setRandomPotion] = useState()
+  const [shuffledIngredients, setShuffledIngredients] = useState([]); // Store shuffled plants for the potion
+  const [error, setError] = useState(false);
+  const [messages, setMessage] = useState("Congratulations, You Won!");
   const plant_name_field = 
   language === "latin" ? "שם הצמח בלטינית" : 
   language === "pinyin" ? "שם הצמח בפין יין" : 
   "שם הצמח בסינית";  const [flippedCards, setFlippedCards] = useState([]); // Track flipped cards
-  const [matchedCards, setMatchedCards] = useState([]); // Track matched cards
-  const toPracticeOn = "תפקודים והערות";
+  const [matchedComponents, setMatchedComponents] = useState([]); // Track matched cards
+  // const toPracticeOn = "תפקודים והערות";
 
   
   // Shuffle and duplicate the plants for the game
   useEffect(() => {
- 
-    if (plantsForGame.length > 0) {
-      const shuffled = shufflePlants(plantsForGame, numCards);
-      setShuffledPlants(shuffled);
-    }
-    setLoading(false)
-  }, []);
-
-  
-
-
-  const shufflePlants = (arr) => {
-    if (typeof arr === 'string') {
-      arr = JSON.parse(arr); // Convert string to array
-    }
-    if (!Array.isArray(arr)) {
-      console.error('Error: Expected an array, but got:', arr);
-      return []; // Return an empty array if the input is not valid
-    }
-  
-    // Create the pairs
-    const plantPairs = arr.map(plant => {
-      if (plant[plant_name_field] &&  plant["תפקודים והערות"].length > 0) {
-        // Pick a random "תיפקוד" from the plant's list
-        const characters = plant[toPracticeOn].split(",") ;
-        const randomUse = characters[Math.floor(Math.random() * characters.length)];
-        // Create two cards: one with the plant name, and one with the "תיפקוד"
-
-        return [
-          { plantObj: plant, type: 'name', content: plant[plant_name_field], contentId: randomUse}, // Card with the name
-          { plantObj: plant, type: 'use', content: randomUse, contentId:randomUse} // Card with the תיפקוד
-        ];
-      } else {
-        //return just the card name twice
-        return [
-          {plantObj: plant,  type: 'name', content: plant[plant_name_field] , contentId: plant[plant_name_field]}, // Card with the name
-          { plantObj: plant, type: 'use', content: plant[plant_name_field] , contentId: plant[plant_name_field]} // Card with the תיפקוד
-        ];
+    if (categoriesArray.length > 0) {
+      
+      const filteredPotions = potions.filter(potion =>
+        categoriesArray.includes(potion["קטגוריות רחבות"])
+      );
+      if (filteredPotions.length !== 0) {
+        const randomIndex = Math.floor(Math.random() * filteredPotions.length);
+        setRandomPotion(filteredPotions[randomIndex]);
       }
-    });
+      
+    } 
+    else{
+      setError(true)
+      setMessage("no categories was chose.");
+
+    } 
+  }, [selectedCategories, potions]);
+
+  useEffect(() => {
+    if (!randomPotion){
+      return;
+    }
+    const ingredients = shufflePlants() // will randomly choose bad ingredients that not connects to this potion.
+    setShuffledIngredients(ingredients);
+  },[randomPotion]);
+
+
+  const generateBadIngredients = () => {
+    const usedIndices = new Set();  // To track indices we've already tried
+    const usedPlantsSet = new Set();
+    randomPotion["צמחים (ברק)"].split(',').map(plant => plant.trim()).forEach(plant => usedPlantsSet.add(plant));
+    const randomPlants = [];
+    while (randomPlants.length < numBadIngredients) {
+      // Step 3: Generate a random index and check if it is valid
+      const randomIndex = Math.floor(Math.random() * plantsJsons.length);
   
-    // Flatten the array of pairs into a single array of cards
-    const flattenedPairs = plantPairs.flat();
-    console.log("flattenedPairs", flattenedPairs)
-  
-    // Shuffle the cards randomly
-    const shuffled = flattenedPairs.sort(() => Math.random() - 0.5);
-  
+      // Skip if the plant at this index is already used in the potion
+      if (usedPlantsSet.has(plantsJsons[randomIndex].name) || usedIndices.has(randomIndex)) {
+        continue;
+      }
+      randomPlants.push(plantsJsons[randomIndex][plant_name_field]);
+    
+    // Mark the index as used
+      usedIndices.add(randomIndex);
+    }
+    setBadIngredients(randomPlants)
+    return randomPlants;
+
+  }
+
+  const shufflePlants = () => {
+    
+    const randomPlants = generateBadIngredients();
+    const combinedIngredients = [
+      ...randomPotion["צמחים (ברק)"].split(",").map(ingredient => ingredient.trim()),
+      ...randomPlants
+    ];
+
+    const shuffled = [...combinedIngredients]; // shallow copy to not harm randomPotion["צמחים (ברק)"],
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+    }
+
     return shuffled;
   };
+
+
+
  
   const handleCardClick = (index) => {
     if (flippedCards.length === 2 || matchedCards.includes(index)) {
@@ -83,68 +110,46 @@ export default function BrewingPotions() {
   };
 
   // Check for a match after two cards are flipped
-  useEffect(() => {
-    if (flippedCards.length === 2) {
-      const [firstIndex, secondIndex] = flippedCards;
-      const c1 = shuffledPlants[firstIndex]
-      const c2 = shuffledPlants[secondIndex]
-      if ((c1.type === "name" && c2.type === "use" && c1.contentId === c2.contentId) || 
-      (c1.type === "use" && c2.type === "name" && c1.contentId === c2.contentId))
-      {
-        // If cards match, add them to matchedCards
-        // console.log("mutch!", shuffledPlants[firstIndex].type, shuffledPlants[secondIndex].type)
-        setMatchedCards((prevMatched) => [...prevMatched, firstIndex, secondIndex]);
-        
-      }
-      
-      // Wait a moment before resetting flipped cards (to allow user to see the cards)
-      setTimeout(() => setFlippedCards([]), 1500);  // Reset flipped cards after delay
-    }
-  }, [flippedCards, shuffledPlants]);
+  
 
-  useEffect(() => {
-    console.log(numCards, matchedCards.length)
-    if (matchedCards.length >= numCards) {
-      setIsWinner(true);
-    }
-  }, [matchedCards, numCards]);
-
-  // Display loading or error messages
-  if (loading) return <div>Loading game...</div>;
-  if (error) return <div>{error}</div>;
 
   return (
 
-    <div className="App">
-      {isWinner ? (
-        <div >
-          <div className='card categories-list'>
-          <h1>Congratulations, You Won!</h1>
+    <div className={styles.game}>
+      {error || isWinner ? (
+        <div className='card categories-list'>
+          <h1>{messages}</h1>
+           
+        
+        </div>
+  
+      ):randomPotion?  (
+        <div>
+          <div className={styles.titlePotion}>
+            {randomPotion["שם"]}
+          </div>
+            <div className={styles.plantsOptions}>
+              {console.log("shuffledIngredients", shuffledIngredients)}
+            {shuffledIngredients.map((ingredient, index) => (
+                <div key={index} className={styles.categoryBox}>
+                  {ingredient}
+                </div>
+            ))}
+            </div>
+          </div>
 
-          <Link  className="category-box" href={`/Games/GameSettings/`}>
+          ) : (
+         <p>No potion found</p> // This is what you show if randomPotion["שם"] is not defined
+        )
+      }
+      <div className={styles.links}>
+        <Link  className={styles.categoryBox} href={{pathname:`/Games/GameSettings/`, query:{ name_game: "BrewingPotions" }}}>
             Play again
           </Link>
-          <Link   className="category-box" href={"/"}>
+          <Link   className={styles.categoryBox} href={"/"}>
             Home
           </Link>
-          </div>
-        </div>
-
-      ):(<div className="memory-board">
-        {shuffledPlants.map((plant, index) => (
-          <div 
-            key={index}
-            className={`category-box memory-card ${flippedCards.includes(index) || matchedCards.includes(index) ? 'flipped' : ''}`}
-            onClick={() => handleCardClick(index)}
-          >
-              {flippedCards.includes(index) || matchedCards.includes(index) 
-                ? <h2 className="card-text">{plant.content}</h2> // Show content (either plant name or tifkud)
-                : ':)'} {/* Placeholder when the card is not flipped */}
-           
-          </div>
-        ))}
-      </div>)
-      }
+      </div>
     </div>
   );
 };

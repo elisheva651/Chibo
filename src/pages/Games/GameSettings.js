@@ -16,7 +16,7 @@ export default function GameSettings() {
   name_game === "BrewingPotions" ? potionsCategories:
   plantsCategories;
 
-  const [selectedCategories, setSelectedCategories] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [difficulty, setDifficulty] = useState('easy');
   const [sound, setSound] = useState(true);  // true means sound on by default
   const [selectedLanguage, setSelectedLanguage] = useState("pinyin"); // Default to latin
@@ -69,10 +69,11 @@ export default function GameSettings() {
     const final_plants_for_game = filterAndLimitPlants(plantsJsons, selectedCategories, difficulty, difficultyMap);
     // console.log(final_plants_for_game)
     // Navigate with the updated data in the query
+
     router.push({
       pathname: `/Games/${name_game}`,
       query: {
-        plantsCategories: selectedCategories,
+        selectedCategories: selectedCategories,
         difficulty: difficulty,
         sound: sound,
         language: selectedLanguage,
@@ -102,21 +103,24 @@ export default function GameSettings() {
       onClick={() => toggleCategory(category)}
       color={selectedCategories.includes(category) ? "primary" : "default"}
     />
-  ))}
+    ))} 
+    {
+      name_game === "Memory" && (
+        <>
+          מספר קלפים
+          <select value={difficulty} onChange={handleDifficultyChange}>
+            {difficultyOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <br />
+        </>
+      )
+    }
 
-      
 
-      
-
-        מספר קלפים
-        <select value={difficulty} onChange={handleDifficultyChange}>
-          {difficultyOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <br />
         
 
       בחר שפה

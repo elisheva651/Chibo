@@ -1,0 +1,88 @@
+.game{
+    background: #EB8317; /* Orange background */
+  
+  }
+  
+  .links {
+    display: flex;            /* Flexbox to align links in a row */
+    justify-content: center;  /* Center the links horizontally */
+    gap: 16px;                /* Space between the links */
+    margin-top: 20px;         /* Add some space above the container */
+  }
+  
+  .titlePotion {
+    position: relative;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      font-size: 30px;
+      background-color: white;    
+      width: 80vh; /* Adjust this to your preference */
+      height: 10vh; /* This will make the height 80% of the viewport height */
+    }
+    
+    @media (max-width: 768px) {
+      .titlePotion {
+        padding: 10px;
+        height: 10vh; /* Adjust max height on smaller screens */
+        width: 60vh;
+        gap: 15px; /* Optional: Reduce the gap for smaller screens */
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .titlePotion {
+        padding: 5px;
+  
+        max-width: 45vh;
+        width: 40vh;
+        gap: 10px; /* Optional: Reduce the gap more */
+      }
+    }
+  
+    .plantsOptions {
+      display: grid;           /* Use grid layout */
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  /* Automatically adjust columns based on screen width */
+      gap: 16px;               /* Space between the boxes */
+      margin-top: 20px;        /* Add space above the container */
+    }
+  
+  
+  
+  @media (max-width: 768px) {
+    .categoryBox{
+      padding: 10px;
+      max-height: 60vh;
+      gap: 15px;
+    }
+    .plantsOptions {
+      padding: 10px;
+      max-height: 60vh; /* Adjust max height on smaller screens */
+      gap: 15px; /* Optional: Reduce the gap for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .categoryBox{
+      padding: 5px;
+      max-height: 45vh;
+      gap: 10px;
+    }
+    .plantsOptions{
+      padding: 5px;
+      max-width: 45vh;
+      max-height: 50vh; /* Adjust max height even further */
+      gap: 10px; /* Optional: Reduce the gap more */
+    }
+  }
+  
+  .categoryBox {
+    background-color: white; /* White background */
+    padding: 16px;           /* Add some padding inside the box */
+    border-radius: 8px;      /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Add subtle shadow for better visibility */
+    text-align: center;      /* Center the text inside each box */
+    font-size: 14px;         /* Adjust text size */
+    color: #333;             /* Dark text color */
+  }
+  
+  

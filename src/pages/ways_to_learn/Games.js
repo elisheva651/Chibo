@@ -14,7 +14,6 @@ const Games = () => {
       <div className="categories-container" style={{display: 'flex', flexWrap: 'wrap'}} >
       {games?.map(([hebrew, english], index) => {
         const targetPath = `/Games/GameSettings`;
-        console.log(english)
         const query = { name_game: english };
         return (
           <Link  key={index}  className="category-box" href={{
