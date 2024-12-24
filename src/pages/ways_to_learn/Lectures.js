@@ -1,8 +1,15 @@
 import React from 'react'
+import Link from 'next/link'
 
 function Lectures() {
   return (
-    <div>Lectures</div>
+    <div>Lectures
+      <div className="links">
+          <Link className="categoryCardBox" href={"/"}>
+            Home
+          </Link>
+      </div>
+    </div>
   )
 }
 

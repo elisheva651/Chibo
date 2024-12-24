@@ -1,72 +1,143 @@
 
+
 .game{
   background: #EB8317; /* Orange background */
+  overflow-x: auto; /* Allow horizontal scroll */
 
-}
-
-.links {
-  display: flex;            /* Flexbox to align links in a row */
-  justify-content: center;  /* Center the links horizontally */
-  gap: 16px;                /* Space between the links */
-  margin-top: 20px;         /* Add some space above the container */
 }
 
 .titlePotion {
+  margin-top: 10%; /* Adds a little space from the top */
+  padding: 10px; /* Optional: adds padding inside the title box */
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;  
+  width: 100%; /* Make the title width responsive */
+
+}
+
+.plantsOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  width: 100vh;
+
+}
+
+
+.dropZoneContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Adjust box size dynamically */
+  gap: 10px; /* Space between boxes */
+  margin-top: 20px;
+  width: 100%;  /* Ensure the container takes up full width of parent */
+  padding: 10px; /* Optional padding around the container */
+}
+.categoryCardBox {
+  cursor: move; /* Makes the cursor a "move" icon when dragging */
+  padding: 10px;
+  background-color: lightgreen;
+  margin: 5px;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure padding doesn't affect width/height calculations */
+
+}
+
+.dropBox {
+  border-radius: 10px;
+  width: 100px;
+  height: 80px;
+  border: 2px dashed #aaa;
+  margin: 10px;
   position: relative;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    font-size: 30px;
-    background-color: white;    
-    width: 80vh; /* Adjust this to your preference */
-    height: 10vh; /* This will make the height 80% of the viewport height */
-  }
-  
-  @media (max-width: 768px) {
-    .titlePotion {
-      padding: 10px;
-      height: 10vh; /* Adjust max height on smaller screens */
-      width: 60vh;
-      gap: 15px; /* Optional: Reduce the gap for smaller screens */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .titlePotion {
-      padding: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
 
-      max-width: 45vh;
-      width: 40vh;
-      gap: 10px; /* Optional: Reduce the gap more */
-    }
-  }
+.selectedIngredient {
+  padding: 5px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+}
 
-  .plantsOptions {
-    display: grid;           /* Use grid layout */
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  /* Automatically adjust columns based on screen width */
-    gap: 16px;               /* Space between the boxes */
-    margin-top: 20px;        /* Add space above the container */
-  }
+.placeholder {
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+}
 
 
+.selectedIngredient, .placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure text is vertically centered */
+}
 
 @media (max-width: 768px) {
-  .categoryBox{
-    padding: 10px;
-    max-height: 60vh;
-    gap: 15px;
+  .dropZoneContainer {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));  /* Allow smaller boxes for smaller screens */
+    gap: 8px;  /* Reduce space between boxes */
+    padding: 5px;  /* Optional: Reduce padding on small screens */
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
   }
+
+  /* Adjust categoryCardBox for smaller screens */
+  .categoryCardBox {
+    padding: 8px;  /* Adjust padding for smaller screens */
+    font-size: 14px;  /* Reduce font size inside cards */
+    margin: 4px;  /* Reduce the margin between cards */
+    
+  }
+  .titlePotion {
+    margin-left: 25%;
+    margin-right: 25%;
+
+    font-size: 20px; /* Decrease font size on smaller screens */
+    width: 50%; /* Allow the title to take up more space on smaller screens */
+    padding: 8px;
+  }
+  
   .plantsOptions {
     padding: 10px;
     max-height: 60vh; /* Adjust max height on smaller screens */
     gap: 15px; /* Optional: Reduce the gap for smaller screens */
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
   }
 }
 
 @media (max-width: 480px) {
-  .categoryBox{
-    padding: 5px;
-    max-height: 45vh;
-    gap: 10px;
+  .dropZoneContainer {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));  /* Allow smaller boxes for smaller screens */
+    gap: 8px;  /* Reduce space between boxes */
+    padding: 5px;  /* Optional: Reduce padding on small screens */
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  /* Adjust categoryCardBox for smaller screens */
+  .categoryCardBox {
+    padding: 8px;  /* Adjust padding for smaller screens */
+    font-size: 14px;  /* Reduce font size inside cards */
+    margin: 4px;  /* Reduce the margin between cards */
+    
+  }
+  .titlePotion {
+    margin-left: 25%;
+    margin-right: 25%;
+    font-size: 20px; /* Decrease font size on smaller screens */
+    width: 50%; /* Allow the title to take up more space on smaller screens */
+    padding: 8px;
   }
   .plantsOptions{
     padding: 5px;
@@ -74,15 +145,5 @@
     max-height: 50vh; /* Adjust max height even further */
     gap: 10px; /* Optional: Reduce the gap more */
   }
-}
-
-.categoryBox {
-  background-color: white; /* White background */
-  padding: 16px;           /* Add some padding inside the box */
-  border-radius: 8px;      /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Add subtle shadow for better visibility */
-  text-align: center;      /* Center the text inside each box */
-  font-size: 14px;         /* Adjust text size */
-  color: #333;             /* Dark text color */
 }
 

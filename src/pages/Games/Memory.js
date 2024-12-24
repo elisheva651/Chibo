@@ -65,11 +65,7 @@ const Memory = () => {
       }
     });
   
-    // Flatten the array of pairs into a single array of cards
     const flattenedPairs = plantPairs.flat();
-    console.log("flattenedPairs", flattenedPairs)
-  
-    // Shuffle the cards randomly
     const shuffled = flattenedPairs.sort(() => Math.random() - 0.5);
   
     return shuffled;
@@ -128,18 +124,18 @@ const Memory = () => {
             onClick={() => handleCardClick(index)}
           >
               {flippedCards.includes(index) || matchedCards.includes(index) 
-                ? <h2 className="card-text">{plant.content}</h2> // Show content (either plant name or tifkud)
-                : ':)'} {/* Placeholder when the card is not flipped */}
+                ? <h2 className="card-text">{plant.content}</h2> 
+                : ':)'}
            
           </div>
         ))}
       </div>)
       }
-      <div className={styles.links}>
-        <Link  className={styles.categoryBox} href={{pathname:`/Games/GameSettings/`, query:{ name_game: "Memory" }}}>
+      <div className="links">
+        <Link  className="categoryCardBox" href={{pathname:`/Games/GameSettings/`, query:{ name_game: "Memory" }}}>
             Play again
           </Link>
-          <Link   className={styles.categoryBox} href={"/"}>
+          <Link   className="categoryCardBox" href={"/"}>
             Home
           </Link>
       </div>

@@ -24,7 +24,11 @@ const Games = () => {
           </Link>
       )})}
       </div>
+      
     </div>
+    <Link className="categoryCardBox" href={"/"}>
+            Home
+          </Link>
   </div>
   );
 };

@@ -210,6 +210,45 @@ body, html {
   display: none; /* Hide scrollbar for Chrome, Safari, etc. */
 }
 
+
+.links {
+  display: flex;            /* Flexbox to align links in a row */
+  justify-content: center;  /* Center the links horizontally */
+  gap: 16px;                /* Space between the links */
+  margin-top: 10px;         /* Add some space above the container */
+  margin-bottom: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .categoryCardBox{
+    padding: 10px;
+    max-height: 60vh;
+    gap: 15px;
+  }
+ 
+}
+
+@media (max-width: 480px) {
+  .categoryCardBox{
+    padding: 5px;
+    max-height: 45vh;
+    gap: 10px;
+  }
+ 
+}
+
+.categoryCardBox {
+  background-color: white; /* White background */
+  padding: 16px;           /* Add some padding inside the box */
+  border-radius: 8px;      /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Add subtle shadow for better visibility */
+  text-align: center;      /* Center the text inside each box */
+  font-size: 14px;         /* Adjust text size */
+  color: #333;             /* Dark text color */
+}
+
+
 /* Category box styling */
 .category-box {
   flex-shrink: 0;        /* Prevent items from shrinking */
